@@ -1,33 +1,23 @@
-#ifndef WCX_OPTIONS_H
-#define WCX_OPTIONS_H
-
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include "options.h"
 #include "fatal.h"
-
-typedef struct wcx_options {
-  const char *files[256];
-  bool lines;
-  bool words;
-  bool chars;
-  bool bytes;
-} wcx_options;
 
 void wcx_options__help(const char *const prog) {
   puts("wcx " WCX_VERSION);
   puts(WCX_DESCRIPTION);
   puts("created by sarkar-segfault, licensed under GPL-3.0-or-later");
 
-  printf("\n%s [flags] <files>\n", prog);
-  puts("    files\n\ta list of 1 to 64 files to process");
+  printf("\n%s [flags] <input>\n", prog);
+  puts("    input\n\tpath to a file to process");
   puts("    -h, --help\n\tprints this message and exits");
   puts("    -l, --lines\n\tprints the number of lines in the files");
   puts("    -w, --words\n\tprints the number of words in the files");
-  puts("    -c, --chars\n\tprints the number of chars in the files");
-  puts("    -b, --bytes\n\tprints the number of bytes in the files");
+  puts("    -m, --chars\n\tprints the number of chars in the files");
+  puts("    -c, --bytes\n\tprints the number of bytes in the files");
   
   exit(0);
 }
@@ -37,9 +27,8 @@ const wcx_options wcx_options_parse(const char *const *argv) {
   if (prog == NULL) FATAL("expected program name as first argument");
 
   wcx_options options = {0};
-  uint8_t idx = 0;
 
-  for (const char *const *arg = argv + 1; *arg != NULL; ++arg) {
+  for (const char *const *arg = argv + 1; *arg; ++arg) {
     if (!strcmp(*arg, "-h") || !strcmp(*arg, "--help"))
       wcx_options__help(prog);
     
@@ -49,22 +38,19 @@ const wcx_options wcx_options_parse(const char *const *argv) {
     else if (!strcmp(*arg, "-w") || !strcmp(*arg, "--words"))
       options.words = !options.words;
 
-    else if (!strcmp(*arg, "-c") || !strcmp(*arg, "--chars"))
+    else if (!strcmp(*arg, "-m") || !strcmp(*arg, "--chars"))
       options.chars = !options.chars;
 
-    else if (!strcmp(*arg, "-b") || !strcmp(*arg, "--bytes"))
+    else if (!strcmp(*arg, "-c") || !strcmp(*arg, "--bytes"))
       options.bytes = !options.bytes;
 
     else {
-      options.files[idx] = *arg;
-      ++idx;
+      options.file = *arg;
     }
   }
 
   if (!options.lines && !options.words && !options.chars && !options.bytes)
-    options.lines = options.words = options.chars = options.bytes = true;
+    options.lines = options.words = options.bytes = true;
 
   return options;
 }
-
-#endif

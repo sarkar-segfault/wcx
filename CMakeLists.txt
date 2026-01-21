@@ -6,8 +6,8 @@ project(
   DESCRIPTION "a rewrite of wc in pure c99"
 )
 
-add_executable(wcx src/main.c)
-target_include_directories(wcx PRIVATE src)
+add_executable(wcx sources/main.c sources/options.c sources/count.c)
+target_include_directories(wcx PRIVATE headers)
 
 target_compile_definitions(wcx PRIVATE WCX_VERSION="${PROJECT_VERSION}")
 target_compile_definitions(wcx PRIVATE WCX_DESCRIPTION="${PROJECT_DESCRIPTION}")
