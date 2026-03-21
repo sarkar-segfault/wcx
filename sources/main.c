@@ -30,7 +30,7 @@ int main(const int _, const char *const *argv) {
     data[len++] = (char)ch;
   }
 
-  printf("File        %s\n", options.file ? options.file : "stdin");
+  printf("File         %s\n", options.file ? options.file : "stdin");
 
   if (options.lines)
     printf("Lines        %zu\n", wcx_count_lines(data, len));
