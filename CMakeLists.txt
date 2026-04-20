@@ -12,12 +12,7 @@ target_include_directories(wcx PRIVATE headers)
 target_compile_definitions(wcx PRIVATE WCX_VERSION="${PROJECT_VERSION}")
 target_compile_definitions(wcx PRIVATE WCX_DESCRIPTION="${PROJECT_DESCRIPTION}")
 
-set_target_properties(
-  wcx PROPERTIES
-  C_STANDARD 99
-  C_EXTENSIONS OFF
-  C_STANDARD_REQUIRED ON
-)
+target_compile_features(wcx PRIVATE c_std_99)
 
 include(GNUInstallDirs)
 install(
