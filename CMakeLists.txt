@@ -4,6 +4,7 @@ project(
   LANGUAGES C
   VERSION 1.0.0
   DESCRIPTION "a rewrite of wc in pure c99"
+  HOMEPAGE_URL "https://github.com/sarkar-segfault/wcx"
 )
 
 add_executable(wcx sources/main.c sources/options.c sources/count.c)
