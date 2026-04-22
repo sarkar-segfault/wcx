@@ -1,9 +1,11 @@
+#include "options.h"
+
 #include <stdbool.h>
-#include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include "options.h"
+
 #include "fatal.h"
 
 void wcx_options__help(const char *const prog) {
@@ -18,7 +20,7 @@ void wcx_options__help(const char *const prog) {
   puts("    -w, --words\n\tprints the number of words in the files");
   puts("    -m, --chars\n\tprints the number of chars in the files");
   puts("    -c, --bytes\n\tprints the number of bytes in the files");
-  
+
   exit(0);
 }
 
@@ -31,7 +33,7 @@ const wcx_options wcx_options_parse(const char *const *argv) {
   for (const char *const *arg = argv + 1; *arg; ++arg) {
     if (!strcmp(*arg, "-h") || !strcmp(*arg, "--help"))
       wcx_options__help(prog);
-    
+
     else if (!strcmp(*arg, "-l") || !strcmp(*arg, "--lines"))
       options.lines = !options.lines;
 

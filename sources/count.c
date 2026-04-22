@@ -1,8 +1,9 @@
+#include "count.h"
+
+#include <ctype.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
-#include <ctype.h>
-#include "count.h"
 
 const size_t wcx_count_chars(const char *data, size_t size) {
   size_t chars = 0;
@@ -14,7 +15,7 @@ const size_t wcx_count_chars(const char *data, size_t size) {
     }
   }
 
-    return chars;
+  return chars;
 }
 
 const size_t wcx_count_lines(const char *const data, const size_t size) {
