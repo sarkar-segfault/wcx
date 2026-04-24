@@ -2,11 +2,7 @@
 #define WCX__OPTIONS_H
 
 #ifndef WCX_VERSION
-  #define WCX_VERSION "unknown"
-#endif
-
-#ifndef WCX_DESCRIPTION
-  #define WCX_DESCRIPTION "unknown"
+  #define WCX_VERSION "\b"
 #endif
 
 #include <stdbool.h>

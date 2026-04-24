@@ -10,23 +10,23 @@
 
 void wcx_options__help(const char *const prog) {
   puts("wcx " WCX_VERSION);
-  puts(WCX_DESCRIPTION);
+  puts("a rewrite of wc in pure c99");
   puts("created by sarkar-segfault, licensed under GPL-3.0-or-later");
 
   printf("\n%s [flags] <input>\n", prog);
   puts("    input\n\tpath to a file to process");
   puts("    -h, --help\n\tprints this message and exits");
-  puts("    -l, --lines\n\tprints the number of lines in the files");
-  puts("    -w, --words\n\tprints the number of words in the files");
-  puts("    -m, --chars\n\tprints the number of chars in the files");
-  puts("    -c, --bytes\n\tprints the number of bytes in the files");
+  puts("    -l, --lines\n\tprints the number of lines in the file");
+  puts("    -w, --words\n\tprints the number of words in the file");
+  puts("    -m, --chars\n\tprints the number of chars in the file");
+  puts("    -c, --bytes\n\tprints the number of bytes in the file");
 
   exit(0);
 }
 
 const wcx_options wcx_options_parse(const char *const *argv) {
   const char *const prog = argv[0];
-  if (prog == NULL) FATAL("expected program name as first argument");
+  if (!prog) FATAL("expected program name as first argument");
 
   wcx_options options = {0};
 
